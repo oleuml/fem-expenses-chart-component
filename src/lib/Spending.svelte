@@ -35,6 +35,7 @@
 
 <style>
   ul {
+    counter-reset: count;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     padding: 0;
@@ -51,12 +52,35 @@
     background-color: var(--cyan);
   }
   ul > li > div {
+    counter-increment: count;
     height: 0;
     width: 100%;
     background-color: var(--soft-red);
     border-radius: 0.2rem;
     margin-bottom: 0.5rem;
-    animation: growing-height 250ms ease-in-out 500ms forwards;
+    animation: growing-height 250ms ease-in-out forwards;
+  }
+
+  ul > li:nth-child(1) > div {
+    animation-delay: 100ms;
+  }
+  ul > li:nth-child(2) > div {
+    animation-delay: 200ms;
+  }
+  ul > li:nth-child(3) > div {
+    animation-delay: 300ms;
+  }
+  ul > li:nth-child(4) > div {
+    animation-delay: 400ms;
+  }
+  ul > li:nth-child(5) > div {
+    animation-delay: 500ms;
+  }
+  ul > li:nth-child(6) > div {
+    animation-delay: 600ms;
+  }
+  ul > li:nth-child(7) > div {
+    animation-delay: 700ms;
   }
 
   @keyframes growing-height {
@@ -90,6 +114,7 @@
     font-size: 1.5em;
     font-weight: 700;
   }
+
   .percentage {
     text-align: end;
     font-size: 0.8em;
