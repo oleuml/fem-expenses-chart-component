@@ -3,13 +3,16 @@
   export let totalMonth: number;
   export let changeToLastMonth: number;
   export let featured: string;
+
+  export let maxSpending = Math.max(...last7spendings.map((x) => x.amount));
 </script>
 
 <section>
   <article>
     <h2>Spending - Last 7 days</h2>
-    <ul>
+    <ul style="min-height: {maxSpending * 3}px">
       {#each last7spendings as { day, amount }}
+        {@const height = amount / maxSpending}
         <li class:featured={featured === day}>
           <div style="--height: calc({amount}px * 2.5)" />
           {day}
@@ -48,11 +51,21 @@
     background-color: var(--cyan);
   }
   ul > li > div {
-    height: var(--height);
+    height: 0;
     width: 100%;
     background-color: var(--soft-red);
     border-radius: 0.2rem;
     margin-bottom: 0.5rem;
+    animation: growing-height 250ms ease-in-out 500ms forwards;
+  }
+
+  @keyframes growing-height {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--height);
+    }
   }
   hr {
     display: block;
