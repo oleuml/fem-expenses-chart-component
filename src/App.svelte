@@ -1,11 +1,13 @@
 <script>
   import Balance from "./lib/Balance.svelte";
   import Spending from "./lib/Spending.svelte";
+
+  import data from "./assets/data.json";
 </script>
 
 <main>
   <Balance balance={921.48} />
-  <Spending month={[1, 2, 3, 4, 34, 4.33, 1, 234, 34]} />
+  <Spending last7spendings={data} changeToLastMonth={2.4} totalMonth={478.33} featured="wed" />
 </main>
 
 <style>

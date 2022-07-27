@@ -1,49 +1,30 @@
 <script lang="ts">
-  export let month: number[];
+  export let last7spendings: { day: string; amount: number }[];
+  export let totalMonth: number;
+  export let changeToLastMonth: number;
+  export let featured: string;
 </script>
 
 <section>
   <article>
     <h2>Spending - Last 7 days</h2>
     <ul>
-      <li>
-        <div style="--height: 50px" />
-        mon
-      </li>
-      <li>
-        <div style="--height: 100px" />
-        tue
-      </li>
-      <li class="featured">
-        <div style="--height: 150px" />
-        wed
-      </li>
-      <li>
-        <div style="--height: 90px" />
-        thu
-      </li>
-      <li>
-        <div style="--height: 45px" />
-        fri
-      </li>
-      <li>
-        <div style="--height: 80px" />
-        sat
-      </li>
-      <li>
-        <div style="--height: 50px" />
-        sun
-      </li>
+      {#each last7spendings as { day, amount }}
+        <li class:featured={featured === day}>
+          <div style="--height: calc({amount}px * 2.5)" />
+          {day}
+        </li>
+      {/each}
     </ul>
   </article>
   <hr />
   <article class="total">
     <div>
       <h3>Total this month</h3>
-      <p class="sum">${month.reduce((a, b) => a + b, 0)}</p>
+      <p class="sum">${totalMonth}</p>
     </div>
     <div>
-      <p class="percentage">+2.4%</p>
+      <p class="percentage">+{changeToLastMonth}%</p>
       <h3>from last month</h3>
     </div>
   </article>
