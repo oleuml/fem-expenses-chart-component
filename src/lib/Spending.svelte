@@ -14,7 +14,10 @@
       {#each last7spendings as { day, amount }}
         {@const height = amount / maxSpending}
         <li class:featured={featured === day} on:click={() => (featured = day)}>
-          <div class="bar bar-animated" style="--height: calc({amount}px * 2.5)" />
+          <div
+            class="bar bar-animated"
+            style="--value: '${amount}';--height: calc({amount}px * 2.5)"
+          />
           {day}
         </li>
       {/each}
@@ -47,17 +50,42 @@
   ul > li {
     color: var(--medium-brown);
     font-size: 0.6em;
+    cursor: pointer;
   }
   .featured > .bar {
     background-color: var(--cyan);
   }
   .bar {
+    --value: "0";
+    position: relative;
     cursor: pointer;
     height: 0;
     width: 100%;
     background-color: var(--soft-red);
     border-radius: 0.2rem;
     margin-bottom: 0.5rem;
+    transition: background-color 200ms ease;
+  }
+
+  .bar:hover {
+    opacity: 0.7;
+  }
+  .bar:hover::before {
+    content: var(--value);
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    top: -1.45rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    background-color: var(--dark-brown);
+    font-weight: 700;
+    color: var(--very-pale-orange);
+  }
 
   .bar-animated {
     --animation-delay: 100ms;
