@@ -14,7 +14,7 @@
       {#each last7spendings as { day, amount }}
         {@const height = amount / maxSpending}
         <li class:featured={featured === day} on:click={() => (featured = day)}>
-          <div class="bar" style="--height: calc({amount}px * 2.5)" />
+          <div class="bar bar-animated" style="--height: calc({amount}px * 2.5)" />
           {day}
         </li>
       {/each}
@@ -58,30 +58,32 @@
     background-color: var(--soft-red);
     border-radius: 0.2rem;
     margin-bottom: 0.5rem;
+
+  .bar-animated {
+    --animation-delay: 100ms;
     animation: growing-height 250ms ease-in-out forwards;
-    transition: background-color 200ms ease;
   }
 
-  ul > li:nth-child(1) > .bar {
-    animation-delay: 100ms;
+  ul > li:nth-child(1) > .bar-animated {
+    animation-delay: calc(var(--animation-delay) + 100ms);
   }
-  ul > li:nth-child(2) > .bar {
-    animation-delay: 200ms;
+  ul > li:nth-child(2) > .bar-animated {
+    animation-delay: calc(var(--animation-delay) + 200ms);
   }
-  ul > li:nth-child(3) > .bar {
-    animation-delay: 300ms;
+  ul > li:nth-child(3) > .bar-animated {
+    animation-delay: calc(var(--animation-delay) + 300ms);
   }
-  ul > li:nth-child(4) > .bar {
-    animation-delay: 400ms;
+  ul > li:nth-child(4) > .bar-animated {
+    animation-delay: calc(var(--animation-delay) + 400ms);
   }
-  ul > li:nth-child(5) > .bar {
-    animation-delay: 500ms;
+  ul > li:nth-child(5) > .bar-animated {
+    animation-delay: calc(var(--animation-delay) + 500ms);
   }
-  ul > li:nth-child(6) > .bar {
-    animation-delay: 600ms;
+  ul > li:nth-child(6) > .bar-animated {
+    animation-delay: calc(var(--animation-delay) + 600ms);
   }
-  ul > li:nth-child(7) > .bar {
-    animation-delay: 700ms;
+  ul > li:nth-child(7) > .bar-animated {
+    animation-delay: calc(var(--animation-delay) + 700ms);
   }
 
   @keyframes growing-height {
